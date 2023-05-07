@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Rubezh_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Rubezh_Catalog">
+    <Key>
+      <PropertyRef Name="Rubezh_Catalog_id" />
+    </Key>
+    <Property Name="Rubezh_Catalog_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rubezh_Catalog_Name_Company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rubezh_Catalog_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rubezh_Catalog_Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="Rubezh_Catalog_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Rubezh_Catalog_Feature" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Rubezh_Catalog_Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Rubezh_Company">
+    <Key>
+      <PropertyRef Name="Rubezh_Company_id" />
+    </Key>
+    <Property Name="Rubezh_Company_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rubezh_Company_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Rubezh_Main">
+    <Key>
+      <PropertyRef Name="Rubezh_Main_id" />
+    </Key>
+    <Property Name="Rubezh_Main_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rubezh_Company_id" Type="Int32" />
+    <Property Name="Rubezh_Catalog_id" Type="Int32" />
+    <Property Name="Rubezh_News_id" Type="Int32" />
+    <Property Name="Rubezh_Price_List_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Rubezh_News">
+    <Key>
+      <PropertyRef Name="Rubezh_News_id" />
+    </Key>
+    <Property Name="Rubezh_News_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rubezh_News_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Rubezh_News_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rubezh_News_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Rubezh_Price_List">
+    <Key>
+      <PropertyRef Name="Rubezh_Price_List_id" />
+    </Key>
+    <Property Name="Rubezh_Price_List_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rubezh_Price_List_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rubezh_Price_List_File" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Rubezh_Users">
+    <Key>
+      <PropertyRef Name="Rubezh_Users_id" />
+    </Key>
+    <Property Name="Rubezh_Users_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rubezh_Users_Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rubezh_Users_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rubezh_Users_Level" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityContainer Name="Rubezh_dbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Rubezh_Catalog" EntityType="Self.Rubezh_Catalog" />
+    <EntitySet Name="Rubezh_Company" EntityType="Self.Rubezh_Company" />
+    <EntitySet Name="Rubezh_Main" EntityType="Self.Rubezh_Main" />
+    <EntitySet Name="Rubezh_News" EntityType="Self.Rubezh_News" />
+    <EntitySet Name="Rubezh_Price_List" EntityType="Self.Rubezh_Price_List" />
+    <EntitySet Name="Rubezh_Users" EntityType="Self.Rubezh_Users" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Rubezh_dbModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Rubezh_dbModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

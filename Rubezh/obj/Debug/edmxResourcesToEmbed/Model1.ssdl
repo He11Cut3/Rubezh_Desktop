@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Rubezh_dbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Rubezh_Catalog">
+    <Key>
+      <PropertyRef Name="Rubezh_Catalog_id" />
+    </Key>
+    <Property Name="Rubezh_Catalog_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rubezh_Catalog_Name_Company" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rubezh_Catalog_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rubezh_Catalog_Image" Type="varbinary(max)" Nullable="false" />
+    <Property Name="Rubezh_Catalog_Description" Type="nvarchar(max)" />
+    <Property Name="Rubezh_Catalog_Feature" Type="nvarchar(max)" />
+    <Property Name="Rubezh_Catalog_Link" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Rubezh_Company">
+    <Key>
+      <PropertyRef Name="Rubezh_Company_id" />
+    </Key>
+    <Property Name="Rubezh_Company_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rubezh_Company_Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Rubezh_Main">
+    <Key>
+      <PropertyRef Name="Rubezh_Main_id" />
+    </Key>
+    <Property Name="Rubezh_Main_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rubezh_Company_id" Type="int" />
+    <Property Name="Rubezh_Catalog_id" Type="int" />
+    <Property Name="Rubezh_News_id" Type="int" />
+    <Property Name="Rubezh_Price_List_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Rubezh_News">
+    <Key>
+      <PropertyRef Name="Rubezh_News_id" />
+    </Key>
+    <Property Name="Rubezh_News_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rubezh_News_Name" Type="nvarchar(max)" />
+    <Property Name="Rubezh_News_Date" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rubezh_News_Text" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Rubezh_Price_List">
+    <Key>
+      <PropertyRef Name="Rubezh_Price_List_id" />
+    </Key>
+    <Property Name="Rubezh_Price_List_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rubezh_Price_List_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rubezh_Price_List_File" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Rubezh_Users">
+    <Key>
+      <PropertyRef Name="Rubezh_Users_id" />
+    </Key>
+    <Property Name="Rubezh_Users_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rubezh_Users_Login" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rubezh_Users_Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rubezh_Users_Level" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Хранилище Rubezh_dbModelContainer">
+    <EntitySet Name="Rubezh_Catalog" EntityType="Self.Rubezh_Catalog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rubezh_Company" EntityType="Self.Rubezh_Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rubezh_Main" EntityType="Self.Rubezh_Main" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rubezh_News" EntityType="Self.Rubezh_News" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rubezh_Price_List" EntityType="Self.Rubezh_Price_List" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rubezh_Users" EntityType="Self.Rubezh_Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
