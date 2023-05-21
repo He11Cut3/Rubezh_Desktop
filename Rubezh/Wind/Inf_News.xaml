@@ -82,10 +82,11 @@
 
         <StackPanel Grid.Row="1">
             <TextBlock x:Name="Name"
+                       TextWrapping="Wrap"
                        Style="{StaticResource text_inf_ButtonText}"
                        Margin="0,15,15,15"
-                       Height="92"
-                       Width="362" />
+                       Height="82"
+                       Width="262" />
             <TextBlock x:Name="Date"
                        Style="{StaticResource text_inf_ButtonText}"
                        Margin="0,15,15,15" />
